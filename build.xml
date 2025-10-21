@@ -1,9 +1,17 @@
 <project name="JUnitDemo" default="test">
+    
+    <!-- Compile Java classes -->
     <target name="compile">
         <mkdir dir="classes"/>
-        <javac srcdir="." destdir="classes" includeantruntime="false"/>
+        <javac srcdir="." destdir="classes" includeantruntime="false">
+            <classpath>
+                <!-- JUnit jar needed for compilation -->
+                <pathelement location="/usr/share/java/junit4.jar"/>
+            </classpath>
+        </javac>
     </target>
 
+    <!-- Run JUnit tests -->
     <target name="test" depends="compile">
         <mkdir dir="reports"/>
         <junit printsummary="yes" haltonfailure="no">
@@ -19,5 +27,6 @@
             </batchtest>
         </junit>
     </target>
+
 </project>
 
