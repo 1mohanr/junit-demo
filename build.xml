@@ -1,0 +1,23 @@
+<project name="JUnitDemo" default="test">
+    <target name="compile">
+        <mkdir dir="classes"/>
+        <javac srcdir="." destdir="classes" includeantruntime="false"/>
+    </target>
+
+    <target name="test" depends="compile">
+        <mkdir dir="reports"/>
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath>
+                <pathelement location="classes"/>
+                <pathelement location="/usr/share/java/junit4.jar"/>
+            </classpath>
+            <test name="HelloTest"/>
+            <formatter type="xml"/>
+            <formatter type="plain"/>
+            <batchtest todir="reports">
+                <fileset dir="." includes="*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>
+</project>
+
